@@ -15,5 +15,5 @@ int print_string(va_list args)
 	{
 		_putchar(*s++);
 	}
-	return (*s - *begin);
+	return (s - begin);
 }
