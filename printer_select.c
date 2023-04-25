@@ -4,14 +4,14 @@
  * printer_select - this function used to select which function to.
  * print
  * @format: pointer to string
- * @ind: pointer to index
+ * @i: pointer to index
  * @list: pointer to args list
  * Return: Return the number of elements in c
  */
 
-int printer_select(const char *format,int *i, va_list list)
+int printer_select(const char *format, int *i, va_list list)
 {
-	int chars_printed = 0 ,j = 0, len = 0;
+	int chars_printed = 0, j = 0, len = 0;
 	converter c[] = {
 			{"%c", print_char}, {"%s", print_string},
 			{"%%", print_specifier},
@@ -29,7 +29,7 @@ int printer_select(const char *format,int *i, va_list list)
 
 		len += write(1, "%%", 1);
 
-		if(format[*i - 1] == ' ')
+		if (format[*i - 1] == ' ')
 			len += write(1, " ", 1);
 
 	}
