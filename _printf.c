@@ -11,39 +11,31 @@ int _printf(const char *format, ...)
 {
 	int chars_printed = 0;
 	va_list args;
-	converter c[] = {
-			{"%c", print_char}, {"%s", print_string},
-			{"%%", print_specifier},
-			{NULL, NULL}
-	};
-	int c_len = count_the_converter_array(c);
-	int i = 0;
 
-	va_start(args, format);
+
+	int i = 0, inner_printer_chars;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	while (*format)
+	va_start(args, format);
+
+	for (i = 0; (format && format[i] != '\0'); i++)
 	{
-		if (*format == '%')
+		if (format[i] != '%')
 		{
-			format++;
-			for (i = 0; i < c_len; ++i)
-			{
-				if (*format == c[i].s[1])
-				{
-					chars_printed += c[i].f(args);
-					break;
-				}
-			}
+			chars_printed += _putchar(format[i]);
 		}
 		else
 		{
-			chars_printed += _putchar(*format);
+			i++;
+			inner_printer_chars = printer_select(format, &i, args);
+			if (inner_printer_chars == -1)
+				return (-1);
+			chars_printed += inner_printer_chars;
 		}
-		format++;
 	}
+
 	va_end(args);
 	return (chars_printed);
 }
