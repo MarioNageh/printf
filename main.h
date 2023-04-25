@@ -53,5 +53,7 @@ int percent_handler(const char *, va_list, int *);
 
 int print(char *);
 char *intToChar(long int num, int base);
+int is_lowercase(char c);
+char *string_to_upper(char *s);
 
 #endif

@@ -45,8 +45,10 @@ int percent_handler(const char *str, va_list list, int *i)
 	int size, j, number_formats;
 	converter c[] = {
 			{'s', print_string}, {'c', print_char},
-			{'i',print_integer}, {'d',print_integer},
-			{'b', print_binary}
+			{'i', print_integer}, {'d', print_integer},
+			{'b', print_binary}, {'u', print_unsigned},
+			{'o', print_octal}, {'x', print_hexadecimal_low},
+			{'X', print_hexadecimal_upp}
 	};
 
 	*i = *i + 1;
