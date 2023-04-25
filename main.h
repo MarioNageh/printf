@@ -24,18 +24,27 @@ typedef struct format
 int count_the_converter_array(converter *s);
 
 int _putchar(char s);
+int buffer(char s);
+
 int _printf(const char *format, ...);
 
 /*
 *int print_char(va_list args);
 *int print_string(va_list args);
 *int print_specifier(void);
- */
+*/
 
 int print_string(va_list args);
 int print_char(va_list args);
-
-
+int print_integer(va_list args);
+int print_binary(va_list args);
+int print_rot(va_list args);
+int print_unsigned(va_list args);
+int print_octal(va_list args);
+int print_hexadecimal_low(va_list args);
+int print_hexadecimal_upp(va_list args);
+int print_pointer(va_list args);
+int print_rev_string(va_list args);
 
 /*int printer_select(const char *format, int *ind, va_list list);*/
 int handler(const char *, va_list);
