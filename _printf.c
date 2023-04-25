@@ -17,35 +17,39 @@ int _printf(const char *format, ...)
 			{NULL, NULL}
 	};
 	int c_len = count_the_converter_array(c);
-	int i = 0, founded = 0;
+	int i = 0, j = 0;
 
 	va_start(args, format);
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	while (*format)
+	while (format[i])
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
-			format++;
-
-			for (i = 0; i < c_len; ++i)
+			if (!format[i + 1] || (format[i + 1] == ' ' && !format[i + 2]))
 			{
-				if (*format == c[i].s[1])
+				chars_printed = -1;
+				break;
+			}
+
+			for (j = 0; j < c_len; ++j)
+			{
+				if (format[i+1] == c[j].s[1])
 				{
-					founded += 1;
-					chars_printed += c[i].f(args);
+					chars_printed += c[j].f(args);
 					break;
 				}
 			}
+			i++;
 
 		}
 		else
 		{
-			chars_printed += _putchar(*format);
+			chars_printed += _putchar(format[i]);
 		}
-		format++;
+		i++;
 	}
 	va_end(args);
 	return (chars_printed);
