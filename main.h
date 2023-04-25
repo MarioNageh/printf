@@ -45,6 +45,7 @@ int print_hexadecimal_low(va_list args);
 int print_hexadecimal_upp(va_list args);
 int print_pointer(va_list args);
 int print_rev_string(va_list args);
+int print_string_byte(va_list args);
 
 /*int printer_select(const char *format, int *ind, va_list list);*/
 int handler(const char *, va_list);
@@ -53,7 +54,9 @@ int percent_handler(const char *, va_list, int *);
 
 int print(char *);
 char *intToChar(long int num, int base);
+char *intToCharWidth(long int num, int base, int width);
 int is_lowercase(char c);
 char *string_to_upper(char *s);
+int _strcmp(char *s1, char *s2);
 
 #endif
