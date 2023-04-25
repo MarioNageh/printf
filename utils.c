@@ -16,3 +16,21 @@ int count_the_converter_array(converter *c)
 	}
 	return (counter);
 }
+
+
+/**
+ * print - print char.
+ * @str: string.
+ *
+ * Return: string length.
+ */
+
+int print(char *str)
+{
+	int i;
+
+	for (i = 0; str[i] != '\0'; ++i)
+		_putchar(str[i]);
+
+	return (i);
+}

@@ -50,4 +50,7 @@ int print_rev_string(va_list args);
 int handler(const char *, va_list);
 int percent_handler(const char *, va_list, int *);
 
+
+int print(char *);
+
 #endif
