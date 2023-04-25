@@ -9,43 +9,39 @@
 
 int _printf(const char *format, ...)
 {
-	int chars_printed = 0;
+
 	va_list args;
 	converter c[] = {
 			{"%c", print_char}, {"%s", print_string},
 			{"%%", print_specifier},
 			{NULL, NULL}
 	};
-	int c_len = count_the_converter_array(c);
-	int i = 0, founded = 0;
+	int j = count_the_converter_array(c);
+	int i = 0, chars_printed = 0;
 
 	va_start(args, format);
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-
-	while (*format)
+Here:
+	while (format[i] != '\0')
 	{
-		if (*format == '%')
+		j = 13;
+		while (j >= 0)
 		{
-			format++;
-
-			for (i = 0; i < c_len; ++i)
+			if (c[j].s[0] == format[i] && c[j].s[1] == format[i + 1])
 			{
-				if (*format == c[i].s[1])
-				{
-					founded += 1;
-					chars_printed += c[i].f(args);
-					break;
-				}
+				chars_printed += c[j].f(args);
+				i = i + 2;
+				goto Here;
 			}
+			j--;
 		}
-		else
-		{
-			chars_printed += _putchar(*format);
-		}
-		format++;
+		_putchar(format[i]);
+		chars_printed++;
+		i++;
 	}
+
 	va_end(args);
 	return (chars_printed);
 }
