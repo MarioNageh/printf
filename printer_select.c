@@ -18,11 +18,11 @@ int printer_select(const char *format,int *i, va_list list)
 			{NULL, NULL}
 	};
 
-	for (j = 0; c[j].s != '\0'; j++)
+	for (j = 0; c[j].s != (void *)0; j++)
 		if (format[*i] == c[j].s[1])
 			return (c[j].f(list));
 
-	if (c[j].s == '\0')
+	if (c[j].s == (void *)0)
 	{
 		if (format[*i] == '\0')
 			return (-1);
