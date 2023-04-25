@@ -15,7 +15,7 @@
 
 typedef struct format
 {
-	char *s;
+	char s;
 	int (*f)();
 } converter;
 
@@ -26,10 +26,19 @@ int count_the_converter_array(converter *s);
 int _putchar(char s);
 int _printf(const char *format, ...);
 
-int print_char(va_list args);
-int print_string(va_list args);
-int print_specifier(void);
+/*
+*int print_char(va_list args);
+*int print_string(va_list args);
+*int print_specifier(void);
+ */
 
-int printer_select(const char *format, int *ind, va_list list);
+int print_string(va_list args);
+int print_char(va_list args);
+
+
+
+/*int printer_select(const char *format, int *ind, va_list list);*/
+int handler(const char *, va_list);
+int percent_handler(const char *, va_list, int *);
 
 #endif

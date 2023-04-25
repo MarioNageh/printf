@@ -9,33 +9,21 @@
 
 int _printf(const char *format, ...)
 {
-	int chars_printed = 0;
+	int printed_chars;
 	va_list args;
 
-
-	int i = 0, inner_printer_chars;
-
-	if (!format || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 
+	printed_chars = strlen(format);
+	if (printed_chars <= 0)
+		return (0);
+
 	va_start(args, format);
+	printed_chars = handler(format, args);
 
-	for (i = 0; (format && format[i] != '\0'); i++)
-	{
-		if (format[i] != '%')
-		{
-			chars_printed += _putchar(format[i]);
-		}
-		else
-		{
-			i++;
-			inner_printer_chars = printer_select(format, &i, args);
-			if (inner_printer_chars == -1)
-				return (-1);
-			chars_printed += inner_printer_chars;
-		}
-	}
-
+	_putchar(-1);
 	va_end(args);
-	return (chars_printed);
+
+	return (printed_chars);
 }

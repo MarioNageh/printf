@@ -1,37 +1,75 @@
 #include "main.h"
 
 /**
- * printer_select - this function used to select which function to.
- * print
- * @format: pointer to string
- * @i: pointer to index
- * @list: pointer to args list
- * Return: Return the number of elements in c
- */
-
-int printer_select(const char *format, int *i, va_list list)
+ * handler - Format controller
+ * @str: String format
+ * @list: List of arguments
+ *
+ * Return: Total size of arguments with the total size of the base string
+ **/
+int handler(const char *str, va_list list)
 {
-	int chars_printed = 0, j = 0, len = 0;
+	int size, i, aux;
+
+	size = 0;
+	for (i = 0; str[i] != 0; i++)
+	{
+		if (str[i] == '%')
+		{
+			aux = percent_handler(str, list, &i);
+			if (aux == -1)
+				return (-1);
+
+			size += aux;
+			continue;
+		}
+
+		_putchar(str[i]);
+		size = size + 1;
+	}
+
+
+	return (size);
+}
+
+/**
+ * percent_handler - Controller for percent format
+ * @str: String format
+ * @list: List of arguments
+ * @i: Iterator
+ *
+ * Return: Size of the numbers of elements printed
+ **/
+int percent_handler(const char *str, va_list list, int *i)
+{
+	int size, j, number_formats;
 	converter c[] = {
-			{"%c", print_char}, {"%s", print_string},
-			{"%%", print_specifier},
-			{NULL, NULL}
+			{'s', print_string}, {'c', print_char},
 	};
 
-	for (j = 0; c[j].s != (void *)0; j++)
-		if (format[*i] == c[j].s[1])
-			return (c[j].f(list));
+	*i = *i + 1;
 
-	if (c[j].s == (void *)0)
+	if (str[*i] == '\0')
+		return (-1);
+
+	if (str[*i] == '%')
 	{
-		if (format[*i] == '\0')
-			return (-1);
+		_putchar('%');
+		return (1);
+	}
 
-		len += write(1, "%%", 1);
-
-		if (format[*i - 1] == ' ')
-			len += write(1, " ", 1);
+	number_formats = sizeof(c) / sizeof(c[0]);
+	for (size = j = 0; j < number_formats; j++)
+	{
+		if (str[*i] == c[j].s)
+		{
+			size = c[j].f(list);
+			return (size);
+		}
 
 	}
-	return (chars_printed);
+
+	_putchar('%'), _putchar(str[*i]);
+
+	return (2);
 }
