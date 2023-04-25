@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 			{NULL, NULL}
 	};
 	int c_len = count_the_converter_array(c);
-	int i;
+	int i = 0, founded = 0;
 
 	va_start(args, format);
 
@@ -29,14 +29,19 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			founded = -1;
+
 			for (i = 0; i < c_len; ++i)
 			{
 				if (*format == c[i].s[1])
 				{
+					founded += 1;
 					chars_printed += c[i].f(args);
 					break;
 				}
 			}
+			if (!founded)
+				return (-1);
 		}
 		else
 		{
