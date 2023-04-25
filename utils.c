@@ -10,7 +10,7 @@ int count_the_converter_array(converter *c)
 {
 	int counter = 0;
 
-	while (c[counter].s != NULL)
+	while (c[counter].s != '\0')
 	{
 		counter += 1;
 	}
