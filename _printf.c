@@ -24,11 +24,11 @@ int _printf(const char *format, ...)
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	while (format[i])
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-
+			format++;
 			for (i = 0; i < c_len; ++i)
 			{
 				if (*format == c[i].s[1])
@@ -37,14 +37,12 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			i++
-
 		}
 		else
 		{
 			chars_printed += _putchar(*format);
 		}
-		i++;
+		format++;
 	}
 	va_end(args);
 	return (chars_printed);
