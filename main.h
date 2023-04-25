@@ -31,6 +31,6 @@ int print_char(va_list args);
 int print_string(va_list args);
 int print_specifier(void);
 
-int printer_select(const char *format,int *ind, va_list list);
+int printer_select(const char *format, int *ind, va_list list);
 
 #endif
