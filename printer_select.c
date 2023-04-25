@@ -11,7 +11,7 @@
 
 int printer_select(const char *format,int *i, va_list list)
 {
-	int chars_printed = 0 ,j = 0, len = 0;
+	int chars_printed = 0 ,j = 0;
 	converter c[] = {
 			{"%c", print_char}, {"%s", print_string},
 			{"%%", print_specifier},
@@ -26,12 +26,6 @@ int printer_select(const char *format,int *i, va_list list)
 	{
 		if (format[*i] == '\0')
 			return (-1);
-
-//		len += write(1, "%%", 1);
-//
-//		if(format[*i - 1] == ' ')
-//			len += write(1, " ", 1);
-
 	}
 	return (chars_printed);
 }
