@@ -29,7 +29,6 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			founded = -1;
 
 			for (i = 0; i < c_len; ++i)
 			{
@@ -40,8 +39,7 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (!founded)
-				return (-1);
+
 		}
 		else
 		{
