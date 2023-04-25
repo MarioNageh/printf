@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			inner_printer_chars = printer_select(format, &i, args);
-			if (inner_printer_chars == -1)
+			if (format[i] == '%' && inner_printer_chars)
 				return (-1);
 			chars_printed += inner_printer_chars;
 		}
