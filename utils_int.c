@@ -4,7 +4,7 @@
  * intToCharWidth - integer to ascii
  * @num: num
  * @base: base
- * @base: width
+ * @width: width
  *
  * Return: char
  **/
@@ -16,7 +16,9 @@ char *intToCharWidth(long int num, int base, int width)
 	char sign = 0;
 	char *ptr;
 	unsigned long n = num;
+	int padding ;
 
+	
 	if (num < 0)
 	{
 		n = -num;
@@ -39,7 +41,7 @@ char *intToCharWidth(long int num, int base, int width)
 	}
 
 	/* Add padding if necessary */
-	int padding = width - (int)strlen(ptr);
+	padding = width - (int)strlen(ptr);
 
 	if (padding > 0)
 	{
