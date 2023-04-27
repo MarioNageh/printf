@@ -16,9 +16,8 @@ char *intToCharWidth(long int num, int base, int width)
 	char sign = 0;
 	char *ptr;
 	unsigned long n = num;
-	int padding ;
+	int padding;
 
-	
 	if (num < 0)
 	{
 		n = -num;
