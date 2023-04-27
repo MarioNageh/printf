@@ -53,7 +53,7 @@ int print_string_byte(va_list args)
 	while (*s)
 	{
 
-		if ((*s > 0 && *s < 32) || *s > 127)
+		if ((*s > 0 && *s < 32))
 		{
 
 			s = "\x00";
